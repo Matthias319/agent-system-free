@@ -27,17 +27,38 @@ OpenCode (Runtime) → Ollama Cloud / Groq → LLM (Kimi K2, GLM 5.1, etc.)
 
 ## Getestete + empfohlene Modelle
 
-| Modell | Provider | Speed | Qualität | Empfehlung |
-|--------|----------|-------|----------|------------|
-| **Kimi K2** | **Groq** | **~10s** | **5/5** | **Primärer Notfall-Ersatz** (Firma zahlt) |
-| GLM 5.1 | Ollama Cloud | ~45s | 5/5 | Bestes Open-Source Modell |
-| Gemma 4 31B | Ollama Cloud | ~27s | 4/5 | Google, solide |
-| MiniMax M2.7 | Ollama Cloud | ~41s | 4/5 | Günstigstes Modell |
-| GPT-OSS 120B | Ollama Cloud | ~12s | 3/5 | Schnell aber überspringt manchmal Steps |
-| Kimi K2.5 | Ollama Cloud | ~61s | 5/5 | Detailliertester Output, aber langsam |
-| Qwen 3.5 397B | Ollama Cloud | nicht getestet | — | Verfügbar |
+### Groq (Firma zahlt, schnellste Inference)
 
-**Benchmark-Aufgabe:** AGENTS.md lesen + rules/core.md finden + Zusammenfassung schreiben (Read + Glob + Write).
+| Modell | T1 Read+Write | T2 Create 3 | T3 Edit 3 | T4 Skill | Config | Empfehlung |
+|--------|--------------|-------------|-----------|----------|--------|------------|
+| **Qwen3 32B** | **8.5s** ✓ | **8.5s** 3/3 | **10.6s** ✓ | **39s** ✓ | Keine | **EMPFOHLEN — Allrounder** |
+| GPT-OSS 20B | **6.2s** ✓ | **6.9s** 3/3 | 31s ✓ | 61s ✓ | --variant minimal | Schnellste einfache Tasks |
+| GPT-OSS 120B | 56s ✓ | 56s 3/3 | 113s ✓ | 50s ✓ | --variant minimal | Für lange Outputs (65K) |
+| Kimi K2 | 10s ✓ | 8s 3/3 | 12s ✓ | 21s ✓ | Keine | ⚠️ Wird ~15.04. abgesetzt |
+
+### Ollama Cloud (kostenlos/günstig, bessere Qualität)
+
+| Modell | T1 Read+Write | T2 Create 3 | T3 Edit 3 | T4 Skill | Bug-Test | Empfehlung |
+|--------|--------------|-------------|-----------|----------|----------|------------|
+| **GLM 5.1** | 57s ✓ | **11s** 3/3 | 33s ✓ | 70s ✓ | ✓ Gefunden+Gefixt+Verifiziert | **EMPFOHLEN — beste Qualität** |
+| Kimi K2.5 | 25s ✓ | 16s 3/3 | 18s ✓ | 69s ✓ | nicht getestet | Schneller Allrounder |
+| Gemma 4 31B | 23s ✓ | 57s 3/3 | 67s ✓ | 21s ✓ | nicht getestet | Solide Google-Alternative |
+| MiniMax M2.7 | **29s** ✓ | 25s 3/3 | 33s ✓ | **44s** ✓ | ✗ Hängt bei Multi-Turn | Nur für einfache Tasks |
+
+### Empfohlenes Setup
+
+| Situation | Modell | Warum |
+|-----------|--------|-------|
+| **Default (Notfall)** | Qwen3 32B (Groq) | Schnell, keine Hacks, Firma zahlt |
+| **Qualität zählt** | GLM 5.1 (Ollama Cloud) | Beste Antworten, Bug-Debugging, Quellenangaben |
+| **Quick Tasks** | GPT-OSS 20B (Groq) | 6s für Read/Write, aber --variant minimal nötig |
+| **Groq + Ollama down** | Gemma 4 31B (Ollama Cloud) | Solide Backup-Option |
+
+### Bekannte Probleme
+
+- **GPT-OSS (120B/20B)**: Reasoning-Modelle, brauchen `--variant minimal` sonst stoppen sie nach erstem Tool-Call
+- **MiniMax M2.7**: Hängt bei komplexen Multi-Turn Agent-Workflows (3+ Turns) wegen `reasoning` Feld im Response
+- **Ollama Free Tier**: 1 Concurrent Model, Session-Limits (5h Session, 7-Tage Reset). Pro ($20/mo) für intensiven Einsatz
 
 ## Quick Start
 

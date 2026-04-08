@@ -12,7 +12,7 @@
           "name": "GPT-OSS 120B"
         },
         "glm-5.1:cloud": {
-          "name": "GLM 5.1 Flagship"
+          "name": "GLM 5.1 (EMPFOHLEN f\u00fcr Ollama)"
         },
         "minimax-m2.7:cloud": {
           "name": "MiniMax M2.7"
@@ -36,7 +36,7 @@
       },
       "models": {
         "moonshotai/kimi-k2-instruct-0905": {
-          "name": "Kimi K2 via Groq (EMPFOHLEN)",
+          "name": "Kimi K2 (wird abgesetzt ~15.04.)",
           "limit": {
             "context": 262144,
             "output": 16384
@@ -61,6 +61,13 @@
           "limit": {
             "context": 131072,
             "output": 32768
+          }
+        },
+        "openai/gpt-oss-20b": {
+          "name": "GPT-OSS 20B (schnell, --variant minimal)",
+          "limit": {
+            "context": 131072,
+            "output": 65536
           }
         }
       }
