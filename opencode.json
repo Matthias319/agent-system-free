@@ -43,10 +43,24 @@
           }
         },
         "openai/gpt-oss-120b": {
-          "name": "GPT-OSS 120B via Groq (--variant minimal nötig!)",
+          "name": "GPT-OSS 120B via Groq (--variant minimal n\u00f6tig!)",
           "limit": {
             "context": 131072,
             "output": 65536
+          }
+        },
+        "qwen/qwen3-32b": {
+          "name": "Qwen3 32B via Groq",
+          "limit": {
+            "context": 131072,
+            "output": 40960
+          }
+        },
+        "llama-3.3-70b-versatile": {
+          "name": "Llama 3.3 70B via Groq",
+          "limit": {
+            "context": 131072,
+            "output": 32768
           }
         }
       }
