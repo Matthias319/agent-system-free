@@ -1,0 +1,6 @@
+.env
+__pycache__/
+*.pyc
+.opencode/state/
+.opencode/sessions/
+/tmp/
