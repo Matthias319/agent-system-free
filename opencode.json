@@ -32,15 +32,18 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "Groq (Schnell)",
       "options": {
-        "baseURL": "https://api.groq.com/openai/v1",
-        "apiKey": "env:GROQ_API_KEY"
+        "baseURL": "https://api.groq.com/openai/v1"
       },
       "models": {
         "openai/gpt-oss-120b": {
           "name": "GPT-OSS 120B via Groq"
         },
         "moonshotai/kimi-k2-instruct-0905": {
-          "name": "Kimi K2 via Groq"
+          "name": "Kimi K2 via Groq",
+          "limit": {
+            "context": 262144,
+            "output": 16384
+          }
         }
       }
     }
