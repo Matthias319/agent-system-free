@@ -8,22 +8,40 @@
         "baseURL": "http://localhost:11434/v1"
       },
       "models": {
-        "gpt-oss:120b-cloud": { "name": "GPT-OSS 120B" },
-        "glm-5.1:cloud": { "name": "GLM 5.1 Flagship" },
-        "minimax-m2.7:cloud": { "name": "MiniMax M2.7" },
-        "kimi-k2.5:cloud": { "name": "Kimi K2.5 MoE" },
-        "gemma4:31b-cloud": { "name": "Gemma 4 31B Cloud" },
-        "qwen3.5:397b-cloud": { "name": "Qwen 3.5 397B" }
+        "gpt-oss:120b-cloud": {
+          "name": "GPT-OSS 120B"
+        },
+        "glm-5.1:cloud": {
+          "name": "GLM 5.1 Flagship"
+        },
+        "minimax-m2.7:cloud": {
+          "name": "MiniMax M2.7"
+        },
+        "kimi-k2.5:cloud": {
+          "name": "Kimi K2.5 MoE"
+        },
+        "gemma4:31b-cloud": {
+          "name": "Gemma 4 31B Cloud"
+        },
+        "qwen3.5:397b-cloud": {
+          "name": "Qwen 3.5 397B"
+        }
       }
     },
     "groq": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Groq (Schnell)",
       "options": {
-        "baseURL": "https://api.groq.com/openai/v1"
+        "baseURL": "https://api.groq.com/openai/v1",
+        "apiKey": "env:GROQ_API_KEY"
       },
       "models": {
-        "openai/gpt-oss-120b": { "name": "GPT-OSS 120B via Groq" }
+        "openai/gpt-oss-120b": {
+          "name": "GPT-OSS 120B via Groq"
+        },
+        "moonshotai/kimi-k2-instruct-0905": {
+          "name": "Kimi K2 via Groq"
+        }
       }
     }
   },
