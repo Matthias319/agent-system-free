@@ -29,20 +29,24 @@
       }
     },
     "groq": {
-      "npm": "@ai-sdk/openai-compatible",
+      "npm": "@ai-sdk/openai",
       "name": "Groq (Schnell)",
       "options": {
         "baseURL": "https://api.groq.com/openai/v1"
       },
       "models": {
-        "openai/gpt-oss-120b": {
-          "name": "GPT-OSS 120B via Groq"
-        },
         "moonshotai/kimi-k2-instruct-0905": {
-          "name": "Kimi K2 via Groq",
+          "name": "Kimi K2 via Groq (EMPFOHLEN)",
           "limit": {
             "context": 262144,
             "output": 16384
+          }
+        },
+        "openai/gpt-oss-120b": {
+          "name": "GPT-OSS 120B via Groq (--variant minimal nötig!)",
+          "limit": {
+            "context": 131072,
+            "output": 65536
           }
         }
       }
