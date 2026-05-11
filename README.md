@@ -231,6 +231,21 @@ Die `opencode.json` definiert zwei Provider:
 - Alle 21 Skills einzeln durchspielen
 - Windows-Kompatibilität
 
+## Betriebsnotiz: Strato-Backup
+
+Die Strato-Webhosting-Roots für `quickshare.act.legal`, `project.act.legal`
+und `event.act.legal` werden auf SRV-LLM01 täglich um 04:00 Uhr gesichert.
+
+- Backup-Root: `/mnt/agent-data/backups/strato/`
+- Aktueller 1:1-Spiegel: `/mnt/agent-data/backups/strato/current/`
+- Tages-Snapshots: `/mnt/agent-data/backups/strato/snapshots/YYYY-MM-DD/`
+- Logs: `/mnt/agent-data/backups/strato/logs/`
+- Script: `/home/maetzgerlinux/.claude/tools/strato-backup.sh`
+
+Datei-basierte Datenbanken innerhalb der SFTP-Roots sind automatisch enthalten.
+Externe Strato-MySQL-Dumps brauchen `STRATO_MYSQL_*` Credentials in
+`/home/maetzgerlinux/.claude/.env`.
+
 ## Unterschiede zum Primärsystem
 
 | Aspekt | Primärsystem (Claude Code) | Dieses Repo (OpenCode) |
