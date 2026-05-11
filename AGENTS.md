@@ -73,12 +73,14 @@ Strato-Webhosting wird auf SRV-LLM01 taeglich um 04:00 Uhr gesichert:
 - Aktueller 1:1-Spiegel: `/mnt/agent-data/backups/strato/current/`
 - Tages-Snapshots: `/mnt/agent-data/backups/strato/snapshots/YYYY-MM-DD/`
 - Logs: `/mnt/agent-data/backups/strato/logs/`
+- Validierung: `/mnt/agent-data/backups/strato/current/_backup_meta/sqlite-validation-latest.txt`
 - Script: `/home/maetzgerlinux/.claude/tools/strato-backup.sh`
 - Cron: User-Crontab `maetzgerlinux`, `0 4 * * *`
 
 Gesichert werden die SFTP-Roots fuer `quickshare.act.legal`,
 `project.act.legal` und `event.act.legal`. Datei-basierte Datenbanken innerhalb
-dieser Roots sind dadurch enthalten. Externe Strato-MySQL-Dumps werden nur
+dieser Roots sind dadurch enthalten und werden nach jedem Mirror per SQLite
+`PRAGMA integrity_check` validiert. Externe Strato-MySQL-Dumps werden nur
 erstellt, wenn `STRATO_MYSQL_*` Credentials in `/home/maetzgerlinux/.claude/.env`
 konfiguriert sind.
 
