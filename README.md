@@ -241,11 +241,13 @@ und `event.act.legal` werden auf SRV-LLM01 täglich um 04:00 Uhr gesichert.
 - Tages-Snapshots: `/mnt/agent-data/backups/strato/snapshots/YYYY-MM-DD/`
 - Logs: `/mnt/agent-data/backups/strato/logs/`
 - Validierung: `/mnt/agent-data/backups/strato/current/_backup_meta/sqlite-validation-latest.txt`
+- Datei-Inventar: `/mnt/agent-data/backups/strato/current/_backup_meta/inventory-latest.tsv`
 - Script: `/home/maetzgerlinux/.claude/tools/strato-backup.sh`
 
 Datei-basierte Datenbanken innerhalb der SFTP-Roots sind automatisch enthalten.
 Nach jedem Mirror-Lauf validiert das Script alle gefundenen SQLite-Dateien per
-`PRAGMA integrity_check`.
+`PRAGMA integrity_check` und schreibt ein SHA-256-Datei-Inventar in
+`current/_backup_meta/`.
 Externe Strato-MySQL-Dumps brauchen `STRATO_MYSQL_*` Credentials in
 `/home/maetzgerlinux/.claude/.env`.
 
